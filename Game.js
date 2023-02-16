@@ -17,14 +17,7 @@ function getComputerChoice() {
         return "scissors";
     }
 }
-
-
-
-let playerSelection = prompt("Enter your choice: ");
-playerSelection = playerSelection.toLocaleLowerCase();
-let computerSelection = getComputerChoice(); 
-
-console.log(playerSelection, computerSelection);
+//console.log(playerSelection, computerSelection);
 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
@@ -40,4 +33,33 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-console.log(playRound(playerSelection, computerSelection));
+//console.log(playRound(playerSelection, computerSelection));
+
+
+function game() {
+    let pc = 0; 
+    let cc = 0;
+    let tie = 0;
+    let result = 0; 
+    let playerSelection = 0;
+    let computerSelection = 0;
+
+    for (let i = 0; i < 5; i++) {
+        playerSelection = prompt("Enter your choice: ");
+        playerSelection = playerSelection.toLocaleLowerCase();
+        computerSelection = getComputerChoice();
+        result = playRound(playerSelection, computerSelection);
+        console.log(result); 
+        if (result == "player") {
+            pc = pc + 1;
+        } else if (result == "computer") {
+            cc = cc + 1;
+        } else {
+            tie = tie + 1;
+        }
+    }
+
+    return "PC: " + pc + " CC: " + cc + " Tie: " + tie;
+}
+
+console.log(game());
