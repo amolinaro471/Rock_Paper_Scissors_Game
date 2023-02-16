@@ -28,6 +28,16 @@ console.log(playerSelection, computerSelection);
 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
-        
+        return "tie"
+    } else if (playerSelection == "rock" && computerSelection == "scissors") {
+        return "player"
+    } else if (playerSelection == "paper" && computerSelection == "rock") {
+        return "player"
+    } else if (playerSelection == "scissors" && computerSelection == "paper") {
+        return "player"
+    } else {
+        return "computer"
     }
 }
+
+console.log(playRound(playerSelection, computerSelection));
