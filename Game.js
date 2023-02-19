@@ -5,6 +5,29 @@
 4. output winner
 */
 
+
+const container = document.querySelector('#container');
+
+const buttonGame = document.createElement("button");
+buttonGame.classList.add("GameRound");
+buttonGame.textContent = "Game Round";
+
+
+const buttonPlay = document.createElement("button");
+buttonPlay.classList.add('PlayRound');
+buttonPlay.textContent = "Play Round";
+
+const buttonComputer = document.createElement("button");
+buttonComputer.classList.add("ComputerChoice");
+buttonComputer.textContent = "Computer Choice";
+
+container.appendChild(buttonComputer);
+container.appendChild(buttonGame); 
+container.appendChild(buttonPlay);
+
+buttonGame.addEventListener("click", game);
+buttonPlay.addEventListener("click", playRound);
+
 function getComputerChoice() {
     let rand = Math.floor(Math.random()*3);
     //creates an integer number 1 - 3
@@ -48,9 +71,6 @@ function game() {
     let cc = 0;
     let tie = 0;
     let result = 0; 
-    let playerSelection = 0;
-    let computerSelection = 0;
-
     for (let i = 0; i < 5; i++) {
         result = playRound();
         console.log(result); 
@@ -68,24 +88,3 @@ function game() {
 
 //console.log(game());
 
-const container = document.querySelector('#container');
-
-const buttonGame = document.createElement("button");
-buttonGame.classList.add("GameRound");
-buttonGame.textContent = "Game Round";
-
-
-const buttonPlay = document.createElement("button");
-buttonPlay.classList.add('PlayRound');
-buttonPlay.textContent = "Play Round";
-
-const buttonComputer = document.createElement("button");
-buttonComputer.classList.add("ComputerChoice");
-buttonComputer.textContent = "Computer Choice";
-
-container.appendChild(buttonComputer);
-container.appendChild(buttonGame); 
-container.appendChild(buttonPlay);
-
-buttonGame.addEventListener("click", game);
-buttonPlay.addEventListener("click", playRound);
