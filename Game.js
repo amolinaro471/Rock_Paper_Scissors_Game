@@ -19,7 +19,10 @@ function getComputerChoice() {
 }
 //console.log(playerSelection, computerSelection);
 
-function playRound(playerSelection, computerSelection) {
+function playRound() {
+    playerSelection = getPlayerSelection();
+    computerSelection = getComputerChoice();
+
     if (playerSelection == computerSelection) {
         return "tie"
     } else if (playerSelection == "rock" && computerSelection == "scissors") {
@@ -34,7 +37,11 @@ function playRound(playerSelection, computerSelection) {
 }
 
 //console.log(playRound(playerSelection, computerSelection));
-
+function getPlayerSelection() {
+    playerSelection = prompt("Enter your choice: ");
+    playerSelection = playerSelection.toLocaleLowerCase();
+    return playerSelection;
+}
 
 function game() {
     let pc = 0; 
@@ -45,10 +52,7 @@ function game() {
     let computerSelection = 0;
 
     for (let i = 0; i < 5; i++) {
-        playerSelection = prompt("Enter your choice: ");
-        playerSelection = playerSelection.toLocaleLowerCase();
-        computerSelection = getComputerChoice();
-        result = playRound(playerSelection, computerSelection);
+        result = playRound();
         console.log(result); 
         if (result == "player") {
             pc = pc + 1;
@@ -62,4 +66,26 @@ function game() {
     return "PC: " + pc + " CC: " + cc + " Tie: " + tie;
 }
 
-console.log(game());
+//console.log(game());
+
+const container = document.querySelector('#container');
+
+const buttonGame = document.createElement("button");
+buttonGame.classList.add("GameRound");
+buttonGame.textContent = "Game Round";
+
+
+const buttonPlay = document.createElement("button");
+buttonPlay.classList.add('PlayRound');
+buttonPlay.textContent = "Play Round";
+
+const buttonComputer = document.createElement("button");
+buttonComputer.classList.add("ComputerChoice");
+buttonComputer.textContent = "Computer Choice";
+
+container.appendChild(buttonComputer);
+container.appendChild(buttonGame); 
+container.appendChild(buttonPlay);
+
+buttonGame.addEventListener("click", game);
+buttonPlay.addEventListener("click", playRound);
