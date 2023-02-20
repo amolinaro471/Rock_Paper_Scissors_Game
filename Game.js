@@ -8,25 +8,26 @@
 
 const container = document.querySelector('#container');
 
-const buttonGame = document.createElement("button");
-buttonGame.classList.add("GameRound");
-buttonGame.textContent = "Game Round";
+const buttonPaper = document.createElement("button");
+buttonPaper.classList.add("Paper_Choice");
+buttonPaper.textContent = "Paper";
 
 
-const buttonPlay = document.createElement("button");
-buttonPlay.classList.add('PlayRound');
-buttonPlay.textContent = "Play Round";
+const buttonScissors = document.createElement("button");
+buttonScissors.classList.add('Scissors_Choice');
+buttonScissors.textContent = "Scissors";
 
-const buttonComputer = document.createElement("button");
-buttonComputer.classList.add("ComputerChoice");
-buttonComputer.textContent = "Computer Choice";
+const buttonRock = document.createElement("button");
+buttonRock.classList.add("Rock_Choice");
+buttonRock.textContent = "Rock";
 
-container.appendChild(buttonComputer);
-container.appendChild(buttonGame); 
-container.appendChild(buttonPlay);
+container.appendChild(buttonPaper);
+container.appendChild(buttonRock); 
+container.appendChild(buttonScissors);
 
-buttonGame.addEventListener("click", game);
-buttonPlay.addEventListener("click", playRound);
+buttonPaper.addEventListener("click", playRoundPaper);
+buttonRock.addEventListener("click", playRoundRock);
+buttonScissors.addEventListener("click", playRoundScissors);
 
 function getComputerChoice() {
     let rand = Math.floor(Math.random()*3);
@@ -42,17 +43,41 @@ function getComputerChoice() {
 }
 //console.log(playerSelection, computerSelection);
 
-function playRound() {
-    playerSelection = getPlayerSelection();
+function playRoundRock() {
+    playerSelection = "rock";
     computerSelection = getComputerChoice();
 
     if (playerSelection == computerSelection) {
         return "tie"
-    } else if (playerSelection == "rock" && computerSelection == "scissors") {
+    }
+    else if (computerSelection == "paper") {
+        return "computer";
+    } else {
+        return "rock";
+    }
+    
+}
+
+function playRoundPaper() {
+    playerSelection = "paper";
+    computerSelection = getComputerChoice();
+
+    if (playerSelection == computerSelection) {
+        return "tie"
+    } else if (computerSelection == "rock") {
         return "player"
-    } else if (playerSelection == "paper" && computerSelection == "rock") {
-        return "player"
-    } else if (playerSelection == "scissors" && computerSelection == "paper") {
+    } else {
+        return "computer"
+    }
+}
+
+function playRoundScissors() {
+    playerSelection = "scissors";
+    computerSelection = getComputerChoice();
+
+    if (playerSelection == computerSelection) {
+        return "tie"
+    } else if (computerSelection == "paper") {
         return "player"
     } else {
         return "computer"
@@ -61,7 +86,8 @@ function playRound() {
 
 //console.log(playRound(playerSelection, computerSelection));
 function getPlayerSelection() {
-    playerSelection = prompt("Enter your choice: ");
+    //playerSelection = prompt("Enter your choice: ");
+    playerSelection = addEventListener
     playerSelection = playerSelection.toLocaleLowerCase();
     return playerSelection;
 }
