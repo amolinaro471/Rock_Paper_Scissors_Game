@@ -8,29 +8,29 @@
 
 const container = document.querySelector('#container');
 
-const buttonGame = document.createElement("button");
-buttonGame.classList.add("GameRound");
-buttonGame.textContent = "Game Round";
+const buttonPaper = document.createElement("button");
+buttonPaper.classList.add("PaperChoice");
+buttonPaper.textContent = "Paper";
 
 
-const buttonPlay = document.createElement("button");
-buttonPlay.classList.add('PlayRound');
-buttonPlay.textContent = "Play Round";
+const buttonRock = document.createElement("button");
+buttonRock.classList.add('RockChoice');
+buttonRock.textContent = "Rock";
 
-const buttonComputer = document.createElement("button");
-buttonComputer.classList.add("ComputerChoice");
-buttonComputer.textContent = "Computer Choice";
+const buttonScissors = document.createElement("button");
+buttonScissors.classList.add("ScissorsChoice");
+buttonScissors.textContent = "Scissors";
 
-container.appendChild(buttonComputer);
-container.appendChild(buttonGame); 
-container.appendChild(buttonPlay);
+container.appendChild(buttonPaper);
+container.appendChild(buttonRock); 
+container.appendChild(buttonScissors);
 
-buttonGame.addEventListener("click", game);
-buttonPlay.addEventListener("click", playRound);
+buttonPaper.addEventListener("click", playRound);
+buttonRock.addEventListener("click", playRound);
+buttonScissors.addEventListener("click", playRound);
 
 function getComputerChoice() {
     let rand = Math.floor(Math.random()*3);
-    //creates an integer number 1 - 3
     if (rand == 1) {
         return "rock";
     }
@@ -40,30 +40,26 @@ function getComputerChoice() {
         return "scissors";
     }
 }
-//console.log(playerSelection, computerSelection);
 
-function playRound() {
-    playerSelection = getPlayerSelection();
+
+function playRound(choice) {
+    let playerSelection = null;
     computerSelection = getComputerChoice();
-
+    let winner = "tie"
     if (playerSelection == computerSelection) {
-        return "tie"
+        winner = "tie"
     } else if (playerSelection == "rock" && computerSelection == "scissors") {
-        return "player"
+        winner = "player"
     } else if (playerSelection == "paper" && computerSelection == "rock") {
-        return "player"
+        winner = "player"
     } else if (playerSelection == "scissors" && computerSelection == "paper") {
-        return "player"
+        winner = "player"
     } else {
-        return "computer"
+        winner = "computer"
     }
-}
 
-//console.log(playRound(playerSelection, computerSelection));
-function getPlayerSelection() {
-    playerSelection = prompt("Enter your choice: ");
-    playerSelection = playerSelection.toLocaleLowerCase();
-    return playerSelection;
+    console.log(winner);
+    return winner
 }
 
 function game() {
@@ -86,5 +82,4 @@ function game() {
     return "PC: " + pc + " CC: " + cc + " Tie: " + tie;
 }
 
-//console.log(game());
 
