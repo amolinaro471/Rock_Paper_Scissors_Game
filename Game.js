@@ -44,7 +44,7 @@ function getComputerChoice() {
 }
 
 
-function playRound(choice) {
+function playRound (choice) {
     let playerSelection = choice;
     computerSelection = getComputerChoice();
     let winner = "tie"
@@ -71,8 +71,8 @@ function game() {
     let cc = 0;
     let tie = 0;
     let result = 0; 
-    for (let i = 0; i < 5; i++) {
-        result = playRound();
+    while (pc < 5 || cc < 5) {
+        //result = playRound();
         console.log(result); 
         if (result == "player") {
             pc = pc + 1;
