@@ -25,9 +25,11 @@ container.appendChild(buttonPaper);
 container.appendChild(buttonRock); 
 container.appendChild(buttonScissors);
 
-buttonPaper.addEventListener("click", playRound);
-buttonRock.addEventListener("click", playRound);
-buttonScissors.addEventListener("click", playRound);
+buttonPaper.addEventListener("click", () => {playRound("paper")});
+buttonRock.addEventListener("click", () => {playRound("rock")});
+buttonScissors.addEventListener("click", () => {playRound("scissors")});
+
+
 
 function getComputerChoice() {
     let rand = Math.floor(Math.random()*3);
@@ -43,7 +45,7 @@ function getComputerChoice() {
 
 
 function playRound(choice) {
-    let playerSelection = null;
+    let playerSelection = choice;
     computerSelection = getComputerChoice();
     let winner = "tie"
     if (playerSelection == computerSelection) {
@@ -61,6 +63,8 @@ function playRound(choice) {
     console.log(winner);
     return winner
 }
+
+
 
 function game() {
     let pc = 0; 
