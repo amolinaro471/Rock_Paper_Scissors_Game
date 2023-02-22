@@ -5,21 +5,32 @@
 4. output winner
 */
 
+let compWin = 0; 
+let playWin = 0;
 const container = document.querySelector('#container');
 const buttonPaper = document.querySelector(".paper");
 const buttonRock = document.querySelector(".rock");
 const buttonScissors = document.querySelector(".scissors");
 const outcome = document.querySelector('.outcome');
+const winner = document.createElement('p');
 
-buttonPaper.addEventListener("click", () => {
-    playRound("paper");
-})
-buttonRock.addEventListener("click", () => {
-    playRound("rock");
-})
-buttonScissors.addEventListener("click", () => {
-    playRound("scissors");
-})
+function checkWinner () {
+    
+    if (playWin == 5) {
+        winner.innerText = "You win, Congrats!";
+        winner.style.color = "green";
+        winner.style.fontSize = "32px";
+        outcome.appendChild(winner);
+        //location.reload();
+    }
+    if (compWin == 5) {
+        winner.innerText = "You Lose, You suck!";
+        winner.style.color = "red";
+        winner.style.fontSize = "32px";
+        outcome.appendChild(winner);
+        //location.reload();
+    }
+}
 
 function getComputerChoice() {
     let rand = Math.floor(Math.random()*3);
@@ -43,33 +54,33 @@ function playRound (choice) {
         winner = "tie"
     } else if (playerSelection == "rock" && computerSelection == "scissors") {
         winner = "player"
+        playWin++;
     } else if (playerSelection == "paper" && computerSelection == "rock") {
         winner = "player"
+        playWin++;
     } else if (playerSelection == "scissors" && computerSelection == "paper") {
         winner = "player"
+        playWin++;
     } else {
         winner = "computer"
+        compWin++;
     }
-    console.log(winner);
+    //console.log(winner);
     p.innerText = "Winner is: " + winner;
     outcome.appendChild(p);
-    //return winner
+    return winner
 }
 
-function game() {
-    let pc = 0; 
-    let cc = 0;
-    let tie = 0;
-    while (pc < 5 || cc < 5) {
-        result = "player";
-        if (result == "player") {
-            pc = pc + 1;
-        } else if (result == "computer") {
-            cc = cc + 1;
-        } else {
-            tie = tie + 1;
-        }
-    }
+buttonPaper.addEventListener("click", () => {
+    playRound("paper");
+    checkWinner();
+})
+buttonRock.addEventListener("click", () => {
+    playRound("rock");
+    checkWinner(); 
+})
+buttonScissors.addEventListener("click", () => {
+    playRound("scissors");
+    checkWinner();
+})
 
-    return "PC: " + pc + " CC: " + cc + " Tie: " + tie;
-}
