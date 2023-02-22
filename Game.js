@@ -5,31 +5,21 @@
 4. output winner
 */
 
-
 const container = document.querySelector('#container');
+const buttonPaper = document.querySelector(".paper");
+const buttonRock = document.querySelector(".rock");
+const buttonScissors = document.querySelector(".scissors");
+const outcome = document.querySelector('.outcome');
 
-const buttonPaper = document.createElement("button");
-buttonPaper.classList.add("PaperChoice");
-buttonPaper.textContent = "Paper";
-
-
-const buttonRock = document.createElement("button");
-buttonRock.classList.add('RockChoice');
-buttonRock.textContent = "Rock";
-
-const buttonScissors = document.createElement("button");
-buttonScissors.classList.add("ScissorsChoice");
-buttonScissors.textContent = "Scissors";
-
-container.appendChild(buttonPaper);
-container.appendChild(buttonRock); 
-container.appendChild(buttonScissors);
-
-buttonPaper.addEventListener("click", () => {playRound("paper")});
-buttonRock.addEventListener("click", () => {playRound("rock")});
-buttonScissors.addEventListener("click", () => {playRound("scissors")});
-
-
+buttonPaper.addEventListener("click", () => {
+    playRound("paper");
+})
+buttonRock.addEventListener("click", () => {
+    playRound("rock");
+})
+buttonScissors.addEventListener("click", () => {
+    playRound("scissors");
+})
 
 function getComputerChoice() {
     let rand = Math.floor(Math.random()*3);
@@ -42,11 +32,12 @@ function getComputerChoice() {
         return "scissors";
     }
 }
-
-
+   
 function playRound (choice) {
     let playerSelection = choice;
     computerSelection = getComputerChoice();
+    const p = document.createElement('p');
+     
     let winner = "tie"
     if (playerSelection == computerSelection) {
         winner = "tie"
@@ -59,21 +50,18 @@ function playRound (choice) {
     } else {
         winner = "computer"
     }
-
     console.log(winner);
-    return winner
+    p.innerText = "Winner is: " + winner;
+    outcome.appendChild(p);
+    //return winner
 }
-
-
 
 function game() {
     let pc = 0; 
     let cc = 0;
     let tie = 0;
-    let result = 0; 
     while (pc < 5 || cc < 5) {
-        //result = playRound();
-        console.log(result); 
+        result = "player";
         if (result == "player") {
             pc = pc + 1;
         } else if (result == "computer") {
@@ -85,5 +73,3 @@ function game() {
 
     return "PC: " + pc + " CC: " + cc + " Tie: " + tie;
 }
-
-
