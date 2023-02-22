@@ -22,13 +22,15 @@ function checkWinner () {
         winner.style.fontSize = "32px";
         outcome.appendChild(winner);
         //location.reload();
-    }
-    if (compWin == 5) {
+    }else if (compWin == 5) {
         winner.innerText = "You Lose, You suck!";
         winner.style.color = "red";
         winner.style.fontSize = "32px";
         outcome.appendChild(winner);
         //location.reload();
+    } else {
+        winner.innerText = "Score: Player- " + playWin + " Computer- " + compWin;
+        outcome.appendChild(winner);
     }
 }
 
